@@ -19,8 +19,8 @@ library(visreg)
 
 ## Load the WALLEYE dataset as an example with counts 
 
-WALLEYE <- read_delim(
-     "https://raw.githubusercontent.com/rachel-mc/GAMM_examples/XXXXXXXXXXXXXX")
+file_name <- "https://raw.githubusercontent.com/rachel-mc/Ecological-GAMM-examples/main/WALLEYE.txt"
+WALLEYE <- read.delim(file_name)
 
 
 ## Poisson GAMM with the default smooth function, s(), for all predictors, thus

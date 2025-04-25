@@ -19,8 +19,8 @@ library(visreg)
 
 ## Load the CHARR dataset as an example with discrete proportions 
 
-CHARR <- read_delim(
-       "https://raw.githubusercontent.com/rachel-mc/GAMM_examples/XXXXXXXXXXXX")
+file_name <- "https://raw.githubusercontent.com/rachel-mc/Ecological-GAMM-examples/main/CHARR.txt"
+CHARR <- read.delim(file_name)
 
 
 ## Binomial (BI) GAMM built in "mgcv" with a complementary log-log (cloglog) link.

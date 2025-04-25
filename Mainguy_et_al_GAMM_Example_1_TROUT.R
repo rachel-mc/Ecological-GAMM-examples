@@ -23,9 +23,8 @@ library(visreg)
 
 ## Load the TROUT dataset as an example with a continuous response variable 
 
-TROUT <- read_delim(
-       "https://raw.githubusercontent.com/rachel-mc/GAMM_examples/XXXXXXXXXXXX")
-
+file_name <- "https://raw.githubusercontent.com/rachel-mc/Ecological-GAMM-examples/main/TROUT.txt"
+TROUT <- read.delim(file_name)
 
 ## Non-linear mixed-effects logistic growth model
 ## Create a function for the logistic (LG) growth equation
