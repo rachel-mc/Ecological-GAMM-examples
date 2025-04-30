@@ -338,7 +338,7 @@ diag_plot
 mgcViz_perc
 
 ## Calculate the mgcViz score (mean) for a given model based on 
-## 100 iterations. An associated 95% "uncertainty interval" is also calculated.
+## 100 iterations. An associated 95% "uncertainty interval" (ui) is also calculated.
 ## This can take several seconds to run.
 
 set.seed(2025)
