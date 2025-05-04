@@ -92,7 +92,7 @@ set.seed(2025)
 n <- 10
 
 hnp_obj <- list()
-for(i in 1:n) {
+for (i in 1:n) {
   hnp_obj[[i]] <- hnp(model, 
                       newclass = TRUE,
                       diagfun = dfun,
@@ -204,7 +204,7 @@ hnp(model,
 n <- 10
 
 hnp_obj <- list()
-for(i in 1:n) {
+for (i in 1:n) {
   hnp_obj[[i]] <- hnp(model, 
                       newclass = TRUE,
                       diagfun = dfun,
@@ -240,7 +240,7 @@ set.seed(2025)
 # Use the same X1, X2, and X3 as defined above
 
 shape <- 5
-mu <- exp(1 + 4* X1 - 0.8 * X2 + 7 * as.numeric(X3))  # log link
+mu <- exp(1 + 1.6 * X1 - 0.8 * X2 + 2 * as.numeric(X3))  # log link
 Y <- rgamma(n = 300, shape = shape, rate = shape / mu)
 
 POSITIVE_CONTINUOUS <- data.frame(Y = Y,
@@ -288,7 +288,7 @@ hnp(model,
 n <- 10
 
 hnp_obj <- list()
-for(i in 1:n) {
+for (i in 1:n) {
   hnp_obj[[i]] <- hnp(model, 
                       newclass = TRUE,
                       diagfun = dfun,
@@ -361,7 +361,7 @@ hnp(model,
 n <- 10
 
 hnp_obj <- list()
-for(i in 1:n) {
+for (i in 1:n) {
   hnp_obj[[i]] <- hnp(model, 
                       newclass = TRUE,
                       diagfun = dfun,
@@ -421,7 +421,7 @@ hnp(model,
 n <- 10
 
 hnp_obj <- list()
-for(i in 1:n) {
+for (i in 1:n) {
   hnp_obj[[i]] <- hnp(model, 
                       newclass = TRUE,
                       diagfun = dfun,
@@ -437,8 +437,11 @@ round(return_max(hnp_summary), 2)
 
 Summarize(hnp_summary)
 
+## The Poisson model was inadequate for this data.
+## Based on the mean % above, this NB2 model is adequate. 
 
-# Binomial Distribution with a Logit link -------------
+
+# Binomial Distribution with a logit link -------------
 
 
 ## Analysis of Discrete Proportions
@@ -446,7 +449,7 @@ Summarize(hnp_summary)
 set.seed(2025)
 
 TOTAL <- sample(5:20, n, replace = TRUE)
-eta <- 0.4 + 1.7 * X1 + 2.1 * X2 - 0.6 * as.numeric(X3) # systematic component using X1, X2, and X3 defined above
+eta <- 0.4 + X1^5 + 2.1 * X2 - 0.6 * as.numeric(X3) # systematic component using X1, X2, and X3 defined above
 p <- 1 / (1 + exp(-eta)) # probabilities
 YES <- rbinom(n, size = TOTAL, prob = p)
 
@@ -505,7 +508,7 @@ hnp(model,
 n <- 10
 
 hnp_obj <- list()
-for(i in 1:n) {
+for (i in 1:n) {
   hnp_obj[[i]] <- hnp(model, 
                       newclass = TRUE,
                       diagfun = dfun,
