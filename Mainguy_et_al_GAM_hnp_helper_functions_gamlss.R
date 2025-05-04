@@ -32,6 +32,11 @@ sfun <- function(n, obj) {
 
 ## To create a specific ffun() helper function, the model, family, and data used
 ## must be defined first using these object names.
+
+model <- ## model name
+family <- ## family used
+data <- ## name of dataset
+
 ## See examples below.
 
 
@@ -161,7 +166,7 @@ set.seed(2025)
 n <- 10
 
 hnp_obj <- list()
-for (i in 1:n) { ## run twice
+for (i in 1:n) { ## Must run this for loop twice!
   hnp_obj[[i]] <- hnp(model, 
                       newclass = TRUE,
                       diagfun = dfun,
@@ -322,8 +327,7 @@ hnp_gamlss_count <- function(model,
 
 set.seed(2025)
 
-lambda <- exp(1 + 2* X1 - 1.5 * X2 + 0.38 * as.numeric(X3))  
-# Using the same X1, X2, and X3 as above
+lambda <- exp(1 + 2* X1 - 1.5 * X2 + 0.38 * as.numeric(X3)) # using the same X1, X2, and X3 as above
 Y <- rpois(n = 300, lambda = lambda)
 
 COUNT <- data.frame(Y = Y,
@@ -341,7 +345,6 @@ hnp_gamlss_count(model,
                  how.many.out = TRUE,
                  plot.sim = TRUE, 
                  paint = TRUE)
-
 
 ## To perform a number of "hnp" iterations (n, n > 1) to get a mode and mean
 ## percentage of residuals that lie outside the simulated envelope, the
@@ -370,12 +373,20 @@ Summarize(hnp_summary)
 
 ## Binomial distribution (BI) with logit link
 
+## Generate the same data as in the mgcv example
+
 set.seed(2025)
 
-TOTAL <- sample(5:20, n, replace = TRUE)
-eta <- 0.4 + X1^3 + 2.1 * X2 - 0.6 * as.numeric(X3) # systematic component using X1, X2, and X3 as defined above
-p <- 1 / (1 + exp(-eta)) # probabilities for the logit link
-YES <- rbinom(n, size = TOTAL, prob = p)
+X1 <- runif(n = 300)
+X2 <- rnorm(n = 300)
+X3 <- factor(sample(1:7, size = 300, replace = TRUE))
+TOTAL <- sample(5:20, size = 300, replace = TRUE)
+
+eta <- 0.4 + X1^3 + 1.5 * X2 - 0.6 * as.numeric(X3) 
+p <- 1 / (1 + exp(-eta))
+p_star <- pmin(pmax(p, 1e-6), 1 - 1e-6) 
+
+YES <- rbinom(n = 300, size = TOTAL, prob = p_star)
 
 DISCRETE_PROP <- data.frame(YES = YES,
                             TOTAL = TOTAL,
@@ -403,7 +414,7 @@ ffun <- function(new_response) {
   gamlss(cbind(new_response, TOTAL - new_response) ~ pb(X1) + X2 + random(X3),
            family = family,
            data = data)
-}
+  }
 
 hnp(model,
     newclass = TRUE,
@@ -456,6 +467,8 @@ GAMM_ZIBB <- gamlss(cbind(YES, TOTAL - YES) ~ pb(X1) + X2 + random(X3),
 model <- GAMM_BB
 
 run_complete <- FALSE
+
+## This takes a few minutes to run regardless.
 while (run_complete == F) {
   tryCatch( {
     hnp(model, how.many.out = TRUE, paint = TRUE,
@@ -476,6 +489,8 @@ while (run_complete == F) {
 model <- GAMM_ZIBB
 
 run_complete <- FALSE
+
+## This takes a few minutes to run regardless.
 while (run_complete == F) { 
   tryCatch( {
     hnp(model, how.many.out = TRUE, paint = TRUE,
@@ -498,8 +513,10 @@ n <- 3
 
 hnp_obj <- list()
 run_complete <- rep(FALSE, n)
+
+## This takes several minutes to run.
 for (i in 1:n) {
-  while (run_complete[i] == F) { ## This takes several minutes to run.
+  while (run_complete[i] == F) { 
     tryCatch( {
       hnp_obj[[i]] <- hnp(model, how.many.out = TRUE, plot.sim = FALSE,
                           sim = 19, conf = 1) 

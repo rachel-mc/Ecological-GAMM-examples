@@ -446,12 +446,20 @@ Summarize(hnp_summary)
 
 ## Analysis of Discrete Proportions
 
+## Generate new data
+
 set.seed(2025)
 
-TOTAL <- sample(5:20, n, replace = TRUE)
-eta <- 0.4 + X1^5 + 2.1 * X2 - 0.6 * as.numeric(X3) # systematic component using X1, X2, and X3 defined above
+X1 <- runif(n = 300) # random numbers between 0 and 1
+X2 <- rnorm(n = 300)
+X3 <- factor(sample(1:7, size = 300, replace = TRUE))
+TOTAL <- sample(5:20, size = 300, replace = TRUE)
+
+eta <- 0.4 + X1^3 + 1.5 * X2 - 0.6 * as.numeric(X3) # systematic component using X1, X2, and X3 defined above
 p <- 1 / (1 + exp(-eta)) # probabilities
-YES <- rbinom(n, size = TOTAL, prob = p)
+p_star <- pmin(pmax(p, 1e-6), 1 - 1e-6) # avoid probabilities of exactly 0 or 1
+
+YES <- rbinom(n = 300, size = TOTAL, prob = p_star)
 
 DISCRETE_PROP <- data.frame(YES = YES,
                             TOTAL = TOTAL,
