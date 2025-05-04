@@ -446,7 +446,7 @@ Summarize(hnp_summary)
 set.seed(2025)
 
 TOTAL <- sample(5:20, n, replace = TRUE)
-eta <- 0.4 + 1.7 * X1 + 2.1 * X2 - 0.6 * as.numeric(X3) # X1, X2, and X3 from above
+eta <- 0.4 + 1.7 * X1 + 2.1 * X2 - 0.6 * as.numeric(X3) # systematic component using X1, X2, and X3 defined above
 p <- 1 / (1 + exp(-eta)) # probabilities
 YES <- rbinom(n, size = TOTAL, prob = p)
 
