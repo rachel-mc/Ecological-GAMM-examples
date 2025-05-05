@@ -170,12 +170,7 @@ m_WALLEYE_GAMLSS_NB1_FINAL <- gamlss(N ~ pb(YEAR) + D1AUG + DEPTH + pb(TURBID)
 
 summary(m_WALLEYE_GAMLSS_NB1_FINAL)
 
-m_WALLEYE_GAMLSS_DPO_FINAL <- gamlss(N ~ pb(YEAR) + D1AUG + DEPTH + pb(TURBID)
-                                     + random(AREA),
-                                     family = DPO,
-                                     data = WALLEYE)
-
-summary(m_WALLEYE_GAMLSS_DPO_FINAL)
+## family = DPO gives a numerical error
 
 m_WALLEYE_GAMLSS_GPO_FINAL <- gamlss(N ~ pb(YEAR) + D1AUG + DEPTH + pb(TURBID)
                                      + random(AREA),
