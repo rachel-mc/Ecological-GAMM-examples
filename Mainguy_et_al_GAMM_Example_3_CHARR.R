@@ -297,8 +297,8 @@ dtop(m_CHARR_GAMLSS_NRS_ZIBB)
 ## GAMM including the random intercept RIVER and fitted with the binomial (BI) distribution
 
 model <- m_CHARR_GAMLSS_BI
-family = BI(mu.link = "cloglog")
-data = CHARR
+family <- BI(mu.link = "cloglog")
+data <- CHARR
 
 dfun <- function(obj) resid(obj)
 
@@ -343,10 +343,11 @@ Summarize(hnp_summary)
 ## BI GAM (the random intercept RIVER is omitted)
 
 model <- m_CHARR_GAMLSS_NRS_BI
-family = BI(mu.link = "cloglog")
-data = CHARR
+family <- BI(mu.link = "cloglog")
+data <- CHARR
 
 # Same diagnostic and simulation function as above
+
 # New fitting function
 ffun <- function(new_response) {
   gamlss(cbind(new_response, TOTAL - new_response) ~ BIN50,
