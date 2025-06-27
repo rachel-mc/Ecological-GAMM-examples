@@ -254,7 +254,7 @@ hnp(model,
     fitfun = ffun, 
     how.many.out = TRUE, 
     plot = TRUE, 
-    paint = TRUE
+    paint = TRUE,
     ylab = "Deviance residuals")
 
 ## Performing 10 "hnp" iterations to obtain a mode and a mean percentage of 
@@ -317,7 +317,7 @@ hnp(model,
     fitfun = ffun,
     how.many.out = TRUE,
     plot = TRUE,
-    paint = TRUE
+    paint = TRUE,
     ylab = "Deviance residuals")
 
 ## Perform 10 consecutive "hnp" runs to obtain a mode and a mean percentage of 
