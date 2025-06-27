@@ -229,7 +229,7 @@ set.seed(2025)
 ## and only positive to allow the use of the gamma distribution and a log link.
 
 shape <- 5
-mu <- exp(1 + 1.6 * X1 - 0.8 * X2 + 2 * as.numeric(X3))  # log link
+mu <- exp(1 + 1.6 * X1 - 0.8 * X2 + 2 * as.numeric(X3)) # log link
 Y <- rgamma(n = 300, shape = shape, rate = shape / mu)
 
 NON_ZERO_POSITIVE_CONTINUOUS <- data.frame(Y = Y,

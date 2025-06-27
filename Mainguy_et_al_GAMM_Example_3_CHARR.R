@@ -21,6 +21,7 @@ library(visreg)
 
 file_name <- 
 "https://raw.githubusercontent.com/rachel-mc/Ecological-GAMM-examples/main/CHARR.txt"
+
 CHARR <- read.delim(file_name)
 
 
@@ -86,10 +87,10 @@ b0 <- coef(m_CHARR_GAMLSS_BI)[[1]]
 b1 <- coef(m_CHARR_GAMLSS_BI)[[2]]
 ((-b0 - 0.3665129) / b1)
 
-## Now, four candidate GAMMs are created in "gamlss" that are using the same data,
+## Now, four candidate GAMMs are created in "gamlss" that use the same data,
 ## except that the random effect RIVER is voluntarily omitted to create overdispersion.
 ## The binomial (BI) distribution is therefore expected to no longer be adequate.
-## The beta-binomial (BB), zero-inflated BI (ZIBI) and zero-inflated BB (ZIBB) will 
+## The beta-binomial (BB), zero-inflated BI (ZIBI), and zero-inflated BB (ZIBB) will 
 ## possibly better model such overdispersed discrete proportions that are also
 ## potentially zero-inflated. Models are named with *_NRS_* = *No Random Structure*.
 
@@ -212,7 +213,7 @@ round(return_max(hnp_summary), 2)
 
 Summarize(hnp_summary)
 
-## Calculate the mgcViz score (mode and mean %) for a given model based on 
+## Calculate the mgcViz score (mean %) for a given model based on 
 ## 100 iterations. A 95% "uncertainty interval" (ui) is also calculated.
 ## This can take several seconds to run.
 
@@ -266,7 +267,7 @@ wp(m_CHARR_GAMLSS_NRS_BB)
 
 bp(m_CHARR_GAMLSS_NRS_BB)
 
-## Adequacy assessment using "hnp" for the GAM fitted with the beta-binomial in
+## Adequacy assessment using "hnp" for the GAM fitted with the beta-binomial
 ## in "gamlss" when relying on a single "hnp" iteration. No helper functions are
 ## needed, with 19 simulations and a confidence level of 100% being used to allow
 ## to obtain an half-normal plot for adequacy assessment purposes (see Moral et
@@ -330,8 +331,8 @@ hnp(model,
     paint = TRUE,
     ylab = "Deviance residuals")
 
-## The related half-normal plot suggest weak overdispersion. Because this simple
-## binomial GAM has been fitted in "mgcv", this also allow to test for likely
+## The related half-normal plot suggests weak overdispersion. Because this simple
+## binomial GAM has been fitted in "mgcv", this also allows to test for likely
 ## overdispersion with "DHARMa" which can also test for possible zero-inflation.
 ## Overdispersion is specifically assessed (as opposed to equidispersion) by also
 ## using the argument alternative = "greater" with the testDispersion() function.
@@ -465,8 +466,8 @@ upper_ci <- 1 - exp(-exp(fitted$fit + 1.96 * fitted$se.fit))
 
 cbind(CHARR, estimate, lower_ci, upper_ci)
 
-## Note that the predicted values are the same for a given BIN50, i.e. regardless
+## Note that the predicted values are the same for a given BIN50, i.e., regardless
 ## of the RIVER considered. Additional data manipulations are required to extract
-## only one estimated probability with its related uncertainty to then produce the
+## only one estimated probability with its related uncertainty to then produce
 ## Fig. 3 presented in the main text (not shown). Using "mgcv" offers a clear
 ## advantage over "gamlss" to plot predictions.

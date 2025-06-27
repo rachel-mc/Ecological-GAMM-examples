@@ -193,7 +193,7 @@ round(return_max(hnp_summary), 2)
 Summarize(hnp_summary)
 
 ## Calculate the mgcViz score (mode and mean) based on 100 iterations, each relying
-## on 100 model-based simulation, for a given model and its main explanatory variable.
+## on 100 model-based simulations, for a given model and its main explanatory variable.
 ## A 95% "uncertainty interval" (ui) is also calculated. This can take several 
 ## seconds to run.
 

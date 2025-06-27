@@ -198,7 +198,7 @@ jarque.test(dev_resid_GAUSSIAN_AD)
 ## quantile residuals from the Gaussian GAMM with an adaptive smooth are sufficiently
 ## uniformly distribution relative to the theoretical quantiles of the normal
 ## distribution as a more adequate test. Model-based simulated residuals are first
-## produce and then be used for this specific test.
+## produced and then be used for this specific test.
 
 simulationOutput <- simulateResiduals(fittedModel = m_TROUT_GAUSSIAN_AD)
 
@@ -321,7 +321,7 @@ hnp(model,
     ylab = "Deviance residuals")
 
 ## Perform 10 consecutive "hnp" runs to obtain a mode and a mean percentage of 
-## the points outside the simulated envelope from the same Gamma GAMM being 
+## the points outside the simulated envelope from the same gamma GAMM being 
 ## assessed for adequacy. The set.seed() function is solely used for reproducibility. 
 ## This step can take several minutes to run
 
@@ -433,12 +433,12 @@ concurvity(m_TROUT_GAMMA_AD)
 
 compareML(m_TROUT_GAUSSIAN_AD, m_TROUT_GAMMA_AD)
 
-## Compare the two candidate Gamma GAMMs fitted in "mgcv" based on AICc under
+## Compare the two candidate gamma GAMMs fitted in "mgcv" based on AICc under
 ## an information-theoretic approach using the model.sel() function of "MuMIn".
 
 model.sel(m_TROUT_GAUSSIAN_AD, m_TROUT_GAMMA_AD)
 
-## Compare the candidate Gamma GAMMs fitted in "mgcv" according to a test based
+## Compare the candidate gamma GAMMs fitted in "mgcv" according to a test based
 ## on the Bayes Factor (BF) using the test_bf() function of "performance". Note
 ## that the first model listed is used as the reference level.
 
@@ -449,7 +449,7 @@ test_bf(m_TROUT_GAUSSIAN_AD, m_TROUT_GAMMA_AD)
 
 AIC(m_TROUT_VB, m_TROUT_GAMMA_AD)
 
-## Refit the Gamma GAMM using an adaptive smooth with REML estimation in "mgcv"
+## Refit the gamma GAMM using an adaptive smooth with REML estimation in "mgcv"
 
 m_TROUT_GAMMA_AD_REML <- gam(TL ~ s(AGE, bs = "ad", k = 20) + s(LAKE, bs = "re"),
                              family = Gamma(link = "log"),
