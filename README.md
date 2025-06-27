@@ -1,3 +1,3 @@
 # Supplementary R Code
 
-Accompanying main text: 'Generalized additive modelling of ecological data with mgcv and gamlss: new assessment tools and recommendations' (Mainguy et al., 2025)
+Accompanying main text: 'Generalized additive modeling of ecological data with mgcv: new assessment tools and some recommendations' (Mainguy et al., 2025)
