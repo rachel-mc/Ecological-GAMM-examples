@@ -95,7 +95,7 @@ TROUT_VB_BOOT <- boot_nlme(m_TROUT_VB, PRED_TL)
 TROUT_VB_BOOT_SUMMARY <- cbind(nd[,-4], summary_simulate(t(na.omit(TROUT_VB_BOOT$t))))
 
 TROUT_VB_FINAL <- aggregate(cbind(Estimate, Est.Error, Q2.5, Q97.5) ~ AGE,
-                                  data = TROUT_VB_BOOT_SUMMARY, FUN = mean)
+                                  data = TROUT_VB_BOOT_SUMMARY, FUN = "mean")
 
 ## Calculate the marginal R2 and conditional R2 with the R2M() function of the
 ## "nlraa" package (Miguez 2023)
